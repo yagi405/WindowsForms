@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{994ABC3E-5165-4996-BF08-15BA78945A00}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WindowsForms.Demo</RootNamespace>
+    <AssemblyName>WindowsForms.Demo</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ControlsSample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlsSample.Designer.cs">
+      <DependentUpon>ControlsSample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockAnchorSample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockAnchorSample.Designer.cs">
+      <DependentUpon>DockAnchorSample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnableSample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnableSample.Designer.cs">
+      <DependentUpon>EnableSample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileDialogSample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileDialogSample.Designer.cs">
+      <DependentUpon>FileDialogSample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileSample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileSample.Designer.cs">
+      <DependentUpon>FileSample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hello.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hello.Designer.cs">
+      <DependentUpon>Hello.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxSample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageBoxSample.Designer.cs">
+      <DependentUpon>MessageBoxSample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModeSample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModeSample.Designer.cs">
+      <DependentUpon>ModeSample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModeSampleSub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModeSampleSub.Designer.cs">
+      <DependentUpon>ModeSampleSub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ControlsSample.resx">
+      <DependentUpon>ControlsSample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockAnchorSample.resx">
+      <DependentUpon>DockAnchorSample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnableSample.resx">
+      <DependentUpon>EnableSample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileDialogSample.resx">
+      <DependentUpon>FileDialogSample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileSample.resx">
+      <DependentUpon>FileSample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hello.resx">
+      <DependentUpon>Hello.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageBoxSample.resx">
+      <DependentUpon>MessageBoxSample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModeSample.resx">
+      <DependentUpon>ModeSample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModeSampleSub.resx">
+      <DependentUpon>ModeSampleSub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
