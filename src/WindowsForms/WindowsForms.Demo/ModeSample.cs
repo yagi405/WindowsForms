@@ -26,7 +26,19 @@ namespace WindowsForms.Demo
         private void btnShowDialog_Click(object sender, EventArgs e)
         {
             var sub = new ModeSampleSub();
-            sub.ShowDialog();
+            var dialogResult = sub.ShowDialog(sub);
+
+            switch (dialogResult)
+            {
+                case DialogResult.OK:
+                    MessageBox.Show("DialogResult = OK");
+                    break;
+                case DialogResult.Cancel:
+                    MessageBox.Show("DialogResult = Cancel");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
