@@ -46,6 +46,10 @@ namespace SimpleNotepad.Controls
             set => _selectedContent.IsEdited = value;
         }
 
+        public Func<bool> CloseConfirm { get; set; }
+
+        public INotepadView Owner { get; }
+
         public TabContentsControl(INotepadView owner)
         {
             Owner = owner ?? throw new ArgumentNullException(nameof(owner));
@@ -97,10 +101,6 @@ namespace SimpleNotepad.Controls
             _contents.RemoveAt(removedIndex);
             TabPages.Remove(TabPages[removedIndex]);
         }
-
-        public Func<bool> CloseConfirm { get; set; }
-
-        public INotepadView Owner { get; }
 
         private void OnSelectedIndexChanged(object sender, EventArgs e)
         {

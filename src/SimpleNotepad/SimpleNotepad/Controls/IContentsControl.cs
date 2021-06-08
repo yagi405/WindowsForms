@@ -23,12 +23,13 @@ namespace SimpleNotepad.Controls
 
         bool IsEdited { get; set; }
 
+        Func<bool> CloseConfirm { get; set; }
+
+        INotepadView Owner { get; }
+
         void AddContent();
 
         void CloseContent(bool allowContentsCountZero = false);
 
-        Func<bool> CloseConfirm { get; set; }
-
-        INotepadView Owner { get; }
     }
 }
