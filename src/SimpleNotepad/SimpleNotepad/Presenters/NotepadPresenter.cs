@@ -123,13 +123,9 @@ namespace SimpleNotepad.Presenters
                 return;
             }
 
-            foreach (var t in filePaths)
+            foreach (var filePath in filePaths)
             {
-                if (string.IsNullOrEmpty(t))
-                {
-                    continue;
-                }
-                Open(t);
+                Open(filePath);
             }
         }
 
