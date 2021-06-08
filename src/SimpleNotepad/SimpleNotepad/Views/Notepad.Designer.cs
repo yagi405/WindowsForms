@@ -42,6 +42,7 @@ namespace SimpleNotepad.Views
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.btnReplace = new System.Windows.Forms.ToolStripButton();
             this.tabMain = new System.Windows.Forms.TabControl();
+            this.mnuClose = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMain.SuspendLayout();
             this.tlsMain.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +57,7 @@ namespace SimpleNotepad.Views
             this.mnuMain.Location = new System.Drawing.Point(0, 0);
             this.mnuMain.Name = "mnuMain";
             this.mnuMain.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mnuMain.Size = new System.Drawing.Size(750, 38);
+            this.mnuMain.Size = new System.Drawing.Size(600, 28);
             this.mnuMain.TabIndex = 0;
             // 
             // mnuFile
@@ -65,7 +66,8 @@ namespace SimpleNotepad.Views
             this.mnuNew,
             this.mnuOpen,
             this.mnuSave,
-            this.mnuSaveAs});
+            this.mnuSaveAs,
+            this.mnuClose});
             this.mnuFile.Name = "mnuFile";
             this.mnuFile.Size = new System.Drawing.Size(82, 24);
             this.mnuFile.Text = "ファイル(&F)";
@@ -121,9 +123,9 @@ namespace SimpleNotepad.Views
             this.tlsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnSave,
             this.btnReplace});
-            this.tlsMain.Location = new System.Drawing.Point(0, 48);
+            this.tlsMain.Location = new System.Drawing.Point(0, 28);
             this.tlsMain.Name = "tlsMain";
-            this.tlsMain.Size = new System.Drawing.Size(750, 39);
+            this.tlsMain.Size = new System.Drawing.Size(600, 27);
             this.tlsMain.TabIndex = 1;
             this.tlsMain.Text = "toolStrip1";
             // 
@@ -134,7 +136,7 @@ namespace SimpleNotepad.Views
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(29, 36);
+            this.btnSave.Size = new System.Drawing.Size(29, 24);
             this.btnSave.Text = "上書き保存";
             // 
             // btnReplace
@@ -150,12 +152,19 @@ namespace SimpleNotepad.Views
             // tabMain
             // 
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabMain.Location = new System.Drawing.Point(0, 96);
+            this.tabMain.Location = new System.Drawing.Point(0, 55);
             this.tabMain.Margin = new System.Windows.Forms.Padding(2);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(750, 354);
+            this.tabMain.Size = new System.Drawing.Size(600, 305);
             this.tabMain.TabIndex = 2;
+            // 
+            // mnuClose
+            // 
+            this.mnuClose.Name = "mnuClose";
+            this.mnuClose.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
+            this.mnuClose.Size = new System.Drawing.Size(320, 26);
+            this.mnuClose.Text = "閉じる(&C)";
             // 
             // Notepad
             // 
@@ -194,6 +203,7 @@ namespace SimpleNotepad.Views
         private System.Windows.Forms.ToolStripButton btnSave;
         private System.Windows.Forms.ToolStripButton btnReplace;
         private System.Windows.Forms.TabControl tabMain;
+        private System.Windows.Forms.ToolStripMenuItem mnuClose;
     }
 }
 

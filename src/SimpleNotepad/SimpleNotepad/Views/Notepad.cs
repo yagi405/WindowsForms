@@ -137,6 +137,7 @@ namespace SimpleNotepad.Views
             InitializeComponent();
             _contentsControl = new TabContentsControl(this);
             mnuNew.Click += (sender, args) => _contentsControl.AddContent();
+            mnuClose.Click += (sender, args) => _contentsControl.CloseContent();
         }
     }
 }

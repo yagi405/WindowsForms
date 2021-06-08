@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using SimpleNotepad.Views;
 
@@ -36,6 +35,5 @@ namespace SimpleNotepad.Controls
         void SelectContent(string filePath);
 
         void CloseContent(bool allowContentsCountZero = false);
-
     }
 }
