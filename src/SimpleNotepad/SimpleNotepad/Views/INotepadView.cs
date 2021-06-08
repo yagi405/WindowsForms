@@ -5,9 +5,6 @@ using System.Windows.Forms;
 
 namespace SimpleNotepad.Views
 {
-    /// <summary>
-    /// 簡易メモ帳機能を提供します。
-    /// </summary>
     public interface INotepadView : IDisposable
     {
         event EventHandler LoadEventHandler;

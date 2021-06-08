@@ -85,9 +85,6 @@ namespace SimpleNotepad.Presenters
             Open(filePath);
         }
 
-        /// <summary>
-        /// 現在開いているファイルを上書き保存します。
-        /// </summary>
         private void OnSave(object sender, EventArgs e)
         {
             Save();
