@@ -30,6 +30,7 @@ namespace SimpleNotepad.Controls
         public int ContentsCount => TabCount;
 
         public int ContentAddedCount { get; private set; }
+
         public string OpenFilePath
         {
             get => _selectedContent.OpenFilePath;
