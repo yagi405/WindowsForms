@@ -2,10 +2,8 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using SimpleNotepad.Controls;
-using SimpleNotepad.Models;
-using SimpleNotepad.Views;
 
-namespace SimpleNotepad
+namespace SimpleNotepad.Views
 {
     public partial class Notepad : Form, INotepadView
     {

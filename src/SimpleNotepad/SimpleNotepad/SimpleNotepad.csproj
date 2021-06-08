@@ -57,10 +57,10 @@
     <Compile Include="Models\FilePathProvider.cs" />
     <Compile Include="Models\IDisplayDialogService.cs" />
     <Compile Include="Models\IFilePathProvider.cs" />
-    <Compile Include="Notepad.cs">
+    <Compile Include="Views\Notepad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Notepad.Designer.cs">
+    <Compile Include="Views\Notepad.Designer.cs">
       <DependentUpon>Notepad.cs</DependentUpon>
     </Compile>
     <Compile Include="Presenters\NotepadPresenter.cs" />
@@ -76,7 +76,7 @@
     <Compile Include="Views\Replace.Designer.cs">
       <DependentUpon>Replace.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Notepad.resx">
+    <EmbeddedResource Include="Views\Notepad.resx">
       <DependentUpon>Notepad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

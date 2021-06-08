@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using SimpleNotepad.Models;
 
 namespace SimpleNotepad.Controls
 {

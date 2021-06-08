@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using SimpleNotepad.Models;
 using SimpleNotepad.Presenters;
 using SimpleNotepad.Util;
+using SimpleNotepad.Views;
 
 namespace SimpleNotepad
 {

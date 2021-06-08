@@ -1,5 +1,5 @@
 ﻿
-namespace SimpleNotepad
+namespace SimpleNotepad.Views
 {
     partial class Notepad
     {
