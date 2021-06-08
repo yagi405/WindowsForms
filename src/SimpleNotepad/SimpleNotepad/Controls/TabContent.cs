@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace SimpleNotepad.Controls
 {
-    public class TabContent : TabPage
+    public sealed class TabContent : TabPage
     {
         private const string DefaultName = "tabPage";
         private const string DefaultFileName = "無題";
@@ -67,7 +67,7 @@ namespace SimpleNotepad.Controls
         /// <summary>
         /// 所属する<see cref="TabContentsControl"/>を取得します。
         /// </summary>
-        protected TabContentsControl Owner { get; }
+        private TabContentsControl Owner { get; }
 
         /// <summary>
         /// <see cref="TabContent"/>の新しいインスタンスを生成します。

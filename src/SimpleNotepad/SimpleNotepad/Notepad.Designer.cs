@@ -55,7 +55,8 @@ namespace SimpleNotepad
             this.mnuEdit});
             this.mnuMain.Location = new System.Drawing.Point(0, 0);
             this.mnuMain.Name = "mnuMain";
-            this.mnuMain.Size = new System.Drawing.Size(800, 30);
+            this.mnuMain.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.mnuMain.Size = new System.Drawing.Size(600, 30);
             this.mnuMain.TabIndex = 0;
             // 
             // mnuFile
@@ -122,7 +123,7 @@ namespace SimpleNotepad
             this.btnReplace});
             this.tlsMain.Location = new System.Drawing.Point(0, 30);
             this.tlsMain.Name = "tlsMain";
-            this.tlsMain.Size = new System.Drawing.Size(800, 31);
+            this.tlsMain.Size = new System.Drawing.Size(600, 31);
             this.tlsMain.TabIndex = 1;
             this.tlsMain.Text = "toolStrip1";
             // 
@@ -150,20 +151,22 @@ namespace SimpleNotepad
             // 
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMain.Location = new System.Drawing.Point(0, 61);
+            this.tabMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(800, 389);
+            this.tabMain.Size = new System.Drawing.Size(600, 299);
             this.tabMain.TabIndex = 2;
             // 
             // Notepad
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 360);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.tlsMain);
             this.Controls.Add(this.mnuMain);
             this.MainMenuStrip = this.mnuMain;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Notepad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "簡易メモ帳";

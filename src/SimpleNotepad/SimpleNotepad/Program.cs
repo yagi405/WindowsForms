@@ -1,22 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using SimpleNotepad.Models;
+using SimpleNotepad.Presenters;
+using SimpleNotepad.Util;
 
 namespace SimpleNotepad
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// アプリケーションのメイン エントリ ポイントです。
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Notepad());
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+
+                using (var notepadView = new Notepad())
+                {
+                    notepadView.Tag = new NotepadPresenter(notepadView, new FilePathProvider(), new DisplayDialogService());
+                    Application.Run(notepadView);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(
+                    $@"予期せぬエラーが発生しました。
+{AppConst.AppName}を終了します。",
+                    AppConst.AppName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+                Application.Exit();
+            }
         }
     }
 }

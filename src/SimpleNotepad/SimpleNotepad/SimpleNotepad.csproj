@@ -52,16 +52,30 @@
     <Compile Include="Controls\TabContentsControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="IContentsControl.cs" />
+    <Compile Include="Controls\IContentsControl.cs" />
+    <Compile Include="Models\DisplayDialogService.cs" />
+    <Compile Include="Models\FilePathProvider.cs" />
+    <Compile Include="Models\IDisplayDialogService.cs" />
+    <Compile Include="Models\IFilePathProvider.cs" />
     <Compile Include="Notepad.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Notepad.Designer.cs">
       <DependentUpon>Notepad.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presenters\NotepadPresenter.cs" />
+    <Compile Include="Presenters\ReplacePresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\INotepad.cs" />
+    <Compile Include="Util\AppConst.cs" />
+    <Compile Include="Views\INotepadView.cs" />
+    <Compile Include="Views\IReplaceView.cs" />
+    <Compile Include="Views\Replace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Replace.Designer.cs">
+      <DependentUpon>Replace.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Notepad.resx">
       <DependentUpon>Notepad.cs</DependentUpon>
     </EmbeddedResource>
@@ -74,6 +88,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Replace.resx">
+      <DependentUpon>Replace.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -87,5 +104,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
