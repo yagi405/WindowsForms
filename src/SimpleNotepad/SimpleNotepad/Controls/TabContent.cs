@@ -63,7 +63,7 @@ namespace SimpleNotepad.Controls
                 AcceptsTab = true,
                 WordWrap = false,
                 ScrollBars = ScrollBars.Both,
-                Font = new Font("Yu Gothic UI", 12f, FontStyle.Regular),
+                Font = new Font("Yu Gothic UI", 10f, FontStyle.Regular),
                 BorderStyle = BorderStyle.None,
                 BackColor = Color.FloralWhite,
             };

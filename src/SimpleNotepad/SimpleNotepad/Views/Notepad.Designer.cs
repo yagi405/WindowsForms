@@ -56,7 +56,7 @@ namespace SimpleNotepad.Views
             this.mnuMain.Location = new System.Drawing.Point(0, 0);
             this.mnuMain.Name = "mnuMain";
             this.mnuMain.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mnuMain.Size = new System.Drawing.Size(600, 30);
+            this.mnuMain.Size = new System.Drawing.Size(750, 38);
             this.mnuMain.TabIndex = 0;
             // 
             // mnuFile
@@ -67,7 +67,7 @@ namespace SimpleNotepad.Views
             this.mnuSave,
             this.mnuSaveAs});
             this.mnuFile.Name = "mnuFile";
-            this.mnuFile.Size = new System.Drawing.Size(82, 26);
+            this.mnuFile.Size = new System.Drawing.Size(82, 24);
             this.mnuFile.Text = "ファイル(&F)";
             // 
             // mnuNew
@@ -104,7 +104,7 @@ namespace SimpleNotepad.Views
             this.mnuEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuReplace});
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(71, 26);
+            this.mnuEdit.Size = new System.Drawing.Size(71, 24);
             this.mnuEdit.Text = "編集(&E)";
             // 
             // mnuReplace
@@ -121,9 +121,9 @@ namespace SimpleNotepad.Views
             this.tlsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnSave,
             this.btnReplace});
-            this.tlsMain.Location = new System.Drawing.Point(0, 30);
+            this.tlsMain.Location = new System.Drawing.Point(0, 48);
             this.tlsMain.Name = "tlsMain";
-            this.tlsMain.Size = new System.Drawing.Size(600, 31);
+            this.tlsMain.Size = new System.Drawing.Size(750, 39);
             this.tlsMain.TabIndex = 1;
             this.tlsMain.Text = "toolStrip1";
             // 
@@ -134,7 +134,7 @@ namespace SimpleNotepad.Views
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(29, 28);
+            this.btnSave.Size = new System.Drawing.Size(29, 36);
             this.btnSave.Text = "上書き保存";
             // 
             // btnReplace
@@ -144,21 +144,22 @@ namespace SimpleNotepad.Views
             this.btnReplace.Image = ((System.Drawing.Image)(resources.GetObject("btnReplace.Image")));
             this.btnReplace.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnReplace.Name = "btnReplace";
-            this.btnReplace.Size = new System.Drawing.Size(29, 28);
+            this.btnReplace.Size = new System.Drawing.Size(29, 24);
             this.btnReplace.Text = "置換";
             // 
             // tabMain
             // 
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabMain.Location = new System.Drawing.Point(0, 61);
-            this.tabMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabMain.Location = new System.Drawing.Point(0, 96);
+            this.tabMain.Margin = new System.Windows.Forms.Padding(2);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(600, 299);
+            this.tabMain.Size = new System.Drawing.Size(750, 354);
             this.tabMain.TabIndex = 2;
             // 
             // Notepad
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 360);
@@ -166,7 +167,7 @@ namespace SimpleNotepad.Views
             this.Controls.Add(this.tlsMain);
             this.Controls.Add(this.mnuMain);
             this.MainMenuStrip = this.mnuMain;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Notepad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "簡易メモ帳";

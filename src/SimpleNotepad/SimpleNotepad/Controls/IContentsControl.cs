@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using SimpleNotepad.Views;
 
 namespace SimpleNotepad.Controls
@@ -19,6 +21,8 @@ namespace SimpleNotepad.Controls
 
         string OpenFileName { get; }
 
+        IList<string> OpenFiles { get; }
+
         bool HasOpenFile { get; }
 
         bool IsEdited { get; set; }
@@ -28,6 +32,8 @@ namespace SimpleNotepad.Controls
         INotepadView Owner { get; }
 
         void AddContent();
+
+        void SelectContent(string filePath);
 
         void CloseContent(bool allowContentsCountZero = false);
 

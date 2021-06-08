@@ -60,7 +60,6 @@ namespace SimpleNotepad.Presenters
                 {
                     break;
                 }
-                _notepad.AddContent();
             }
         }
 
@@ -81,11 +80,6 @@ namespace SimpleNotepad.Presenters
             if (string.IsNullOrEmpty(filePath))
             {
                 return;
-            }
-
-            if (_notepad.HasOpenFile)
-            {
-                _notepad.AddContent();
             }
 
             Open(filePath);
@@ -142,12 +136,6 @@ namespace SimpleNotepad.Presenters
                 {
                     continue;
                 }
-
-                if (_notepad.HasOpenFile)
-                {
-                    _notepad.AddContent();
-                }
-
                 Open(t);
             }
         }
@@ -167,6 +155,17 @@ namespace SimpleNotepad.Presenters
 
         private void Open(string filePath)
         {
+            if (_notepad.OpenFiles.Contains(filePath))
+            {
+                _notepad.SelectContent(filePath);
+                return;
+            }
+
+            if (_notepad.HasOpenFile)
+            {
+                _notepad.AddContent();
+            }
+
             try
             {
                 var contents = Read(filePath);

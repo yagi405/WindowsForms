@@ -1,6 +1,7 @@
 ﻿using SimpleNotepad.Views;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SimpleNotepad.Controls
@@ -38,6 +39,8 @@ namespace SimpleNotepad.Controls
         }
 
         public string OpenFileName => _selectedContent.OpenFileName;
+
+        public IList<string> OpenFiles => _contents.Where(x => x.HasOpenFile).Select(x => x.OpenFilePath).ToList();
 
         public bool HasOpenFile => _selectedContent.HasOpenFile;
 
@@ -78,6 +81,23 @@ namespace SimpleNotepad.Controls
             SelectedIndex = TabCount - 1;
 
             ContentAddedCount++;
+        }
+
+        public void SelectContent(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath))
+            {
+                return;
+            }
+
+            var target = _contents.FirstOrDefault(x => x.HasOpenFile && x.OpenFilePath == filePath);
+            if (target == null)
+            {
+                return;
+            }
+
+            _selectedContent = target;
+            SelectedIndex = _selectedContent.TabIndex;
         }
 
         public void CloseContent(bool allowContentsCountZero = false)
