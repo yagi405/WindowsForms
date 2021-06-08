@@ -20,24 +20,19 @@ namespace SimpleNotepad.Presenters
 
         private readonly IDisplayDialogService _displayDialogService;
 
-        //Encodingの切替機能はサポートしていない
+        //Encodingの切替機能は未サポート
         private static readonly Encoding _encoding = Encoding.GetEncoding("Shift_JIS");
 
-        /// <summary>
-        /// 現在のタイトルを取得します。
-        /// </summary>
-        public string Title => _notepad.OpenFileName +
-            (_notepad.IsEdited ? EditedSuffix : "");
+        public string Title => _notepad.OpenFileName + (_notepad.IsEdited ? EditedSuffix : "");
 
-        public NotepadPresenter(INotepadView notepad, IFilePathProvider filePathProvider,
-            IDisplayDialogService displayDialogService)
+        public NotepadPresenter(INotepadView notepad, IFilePathProvider filePathProvider, IDisplayDialogService displayDialogService)
         {
             _notepad = notepad ?? throw new ArgumentNullException(nameof(notepad));
             _filePathProvider = filePathProvider ?? throw new ArgumentNullException(nameof(filePathProvider));
             _displayDialogService = displayDialogService ?? throw new ArgumentNullException(nameof(displayDialogService));
 
-            _notepad.ContentChangedEventHandler += OnTextChanged;
             _notepad.LoadEventHandler += OnLoad;
+            _notepad.ContentChangedEventHandler += OnTextChanged;
             _notepad.OpenClickEventHandler += OnOpen;
             _notepad.SaveClickEventHandler += OnSave;
             _notepad.SaveAsClickEventHandler += OnSaveAs;
@@ -188,8 +183,7 @@ namespace SimpleNotepad.Presenters
 
         public void Replace(object sender, EventArgs e)
         {
-            var (dr, target, replaced, caseSensitive) =
-                _displayDialogService.ShowReplaceDialog();
+            var (dr, target, replaced, caseSensitive) = _displayDialogService.ShowReplaceDialog();
 
             if (dr == DialogResult.Cancel)
             {
@@ -200,9 +194,6 @@ namespace SimpleNotepad.Presenters
                 caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase);
         }
 
-        /// <summary>
-        /// 本文を編集中にします。
-        /// </summary>
         public void OnTextChanged(object sender, EventArgs e)
         {
             if (_notepad.IsEdited)
@@ -229,7 +220,7 @@ namespace SimpleNotepad.Presenters
         {
             if (string.IsNullOrEmpty(filePath))
             {
-                throw new ArgumentException(@"ファイルパスを null 又は 空文字とすることはできません。", nameof(filePath));
+                throw new ArgumentException(@"ファイルパスを null 又は 空文字 にすることはできません。", nameof(filePath));
             }
 
             File.WriteAllText(filePath, _notepad.Content, _encoding);
@@ -239,7 +230,7 @@ namespace SimpleNotepad.Presenters
         {
             if (string.IsNullOrEmpty(filePath))
             {
-                throw new ArgumentException(@"ファイルパスを null 又は 空文字とすることはできません。", nameof(filePath));
+                throw new ArgumentException(@"ファイルパスを null 又は 空文字 にすることはできません。", nameof(filePath));
             }
 
             return File.ReadAllText(filePath, _encoding);

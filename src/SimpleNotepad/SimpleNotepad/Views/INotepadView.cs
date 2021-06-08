@@ -9,9 +9,9 @@ namespace SimpleNotepad.Views
     /// </summary>
     public interface INotepadView : IDisposable
     {
-        event EventHandler ContentChangedEventHandler;
-
         event EventHandler LoadEventHandler;
+
+        event EventHandler ContentChangedEventHandler;
 
         event EventHandler OpenClickEventHandler;
 
@@ -33,25 +33,20 @@ namespace SimpleNotepad.Views
 
         int ContentsCount { get; }
 
-        int ContentAddedCount { get; }
+        string OpenFilePath { get; set; }
 
         string OpenFileName { get; }
 
-        string OpenFilePath { get; set; }
+        bool HasOpenFile { get; }
 
         bool IsEdited { get; set; }
 
-        bool HasOpenFile { get; }
+        Func<bool> CloseConfirm { get; set; }
+
+        Control.ControlCollection Controls { get; }
 
         void AddContent();
 
         void CloseContent(bool allowContentsCountZero = false);
-
-        Func<bool> CloseConfirm { get; set; }
-
-        //void OnFormClosing(object sender, CancelEventArgs e);
-
-        Control.ControlCollection Controls { get; }
-
     }
 }

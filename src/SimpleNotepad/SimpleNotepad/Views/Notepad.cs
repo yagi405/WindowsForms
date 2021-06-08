@@ -9,16 +9,16 @@ namespace SimpleNotepad.Views
     {
         private readonly IContentsControl _contentsControl;
 
-        public event EventHandler ContentChangedEventHandler
-        {
-            add => _contentsControl.ContentChangedEventHandler += value;
-            remove => _contentsControl.ContentChangedEventHandler -= value;
-        }
-
         public event EventHandler LoadEventHandler
         {
             add => Load += value;
             remove => Load -= value;
+        }
+
+        public event EventHandler ContentChangedEventHandler
+        {
+            add => _contentsControl.ContentChangedEventHandler += value;
+            remove => _contentsControl.ContentChangedEventHandler -= value;
         }
 
         public event EventHandler OpenClickEventHandler
@@ -92,16 +92,15 @@ namespace SimpleNotepad.Views
         }
 
         public int ContentsCount => _contentsControl.ContentsCount;
-
-        public int ContentAddedCount => _contentsControl.ContentAddedCount;
-
-        public string OpenFileName => _contentsControl.OpenFileName;
-
         public string OpenFilePath
         {
             get => _contentsControl.OpenFilePath;
             set => _contentsControl.OpenFilePath = value;
         }
+
+        public string OpenFileName => _contentsControl.OpenFileName;
+
+        public bool HasOpenFile => _contentsControl.HasOpenFile;
 
         public bool IsEdited
         {
@@ -109,7 +108,11 @@ namespace SimpleNotepad.Views
             set => _contentsControl.IsEdited = value;
         }
 
-        public bool HasOpenFile => _contentsControl.HasOpenFile;
+        public Func<bool> CloseConfirm
+        {
+            get => _contentsControl.CloseConfirm;
+            set => _contentsControl.CloseConfirm = value;
+        }
 
         public void AddContent()
         {
@@ -121,15 +124,6 @@ namespace SimpleNotepad.Views
             _contentsControl.CloseContent(allowContentsCountZero);
         }
 
-        public Func<bool> CloseConfirm
-        {
-            get => _contentsControl.CloseConfirm;
-            set => _contentsControl.CloseConfirm = value;
-        }
-
-        /// <summary>
-        /// <see cref="Notepad"/>の新しいインタンスを生成します。
-        /// </summary>
         public Notepad()
         {
             InitializeComponent();
