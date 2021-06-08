@@ -56,10 +56,6 @@ namespace SimpleNotepad.Presenters
             for (var i = 1; i < args.Length; i++)
             {
                 Open(args[i]);
-                if (args.Length - 1 == i)
-                {
-                    break;
-                }
             }
         }
 
@@ -152,6 +148,11 @@ namespace SimpleNotepad.Presenters
 
         private void Open(string filePath)
         {
+            if (string.IsNullOrEmpty(filePath))
+            {
+                return;
+            }
+
             if (_notepad.OpenFiles.Contains(filePath))
             {
                 _notepad.SelectContent(filePath);
