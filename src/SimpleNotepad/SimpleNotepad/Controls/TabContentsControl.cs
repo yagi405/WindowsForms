@@ -29,13 +29,16 @@ namespace SimpleNotepad.Controls
 
         public int ContentsCount => TabCount;
 
-        public string OpenFileName => _selectedContent.OpenFileName;
-
+        public int ContentAddedCount { get; private set; }
         public string OpenFilePath
         {
             get => _selectedContent.OpenFilePath;
             set => _selectedContent.OpenFilePath = value;
         }
+
+        public string OpenFileName => _selectedContent.OpenFileName;
+
+        public bool HasOpenFile => _selectedContent.HasOpenFile;
 
         public bool IsEdited
         {
@@ -43,19 +46,16 @@ namespace SimpleNotepad.Controls
             set => _selectedContent.IsEdited = value;
         }
 
-        public int ContentAddedCount { get; private set; }
-
-        public bool HasOpenFile => _selectedContent.HasOpenFile;
-
-        public INotepadView Owner { get; }
-
         public TabContentsControl(INotepadView owner)
         {
             Owner = owner ?? throw new ArgumentNullException(nameof(owner));
 
             Name = DefaultName;
             Dock = DockStyle.Fill;
+
             SelectedIndexChanged += OnSelectedIndexChanged;
+            MouseClick += OnMouseClick;
+
             _contents = new List<TabContent>();
             AddContent();
 
@@ -65,16 +65,12 @@ namespace SimpleNotepad.Controls
 
         public void AddContent()
         {
-            var content = new TabContent(this)
-            {
-                ContentChangedEventHandler = ContentChangedEventHandler,
-            };
+            var content = new TabContent(this);
+            content.ContentChangedEventHandler += ContentChangedEventHandler;
 
             _contents.Add(content);
             _selectedContent = content;
-
             SelectedIndex = TabCount - 1;
-            MouseClick += OnMouseClick;
 
             ContentAddedCount++;
         }
@@ -104,6 +100,8 @@ namespace SimpleNotepad.Controls
 
         public Func<bool> CloseConfirm { get; set; }
 
+        public INotepadView Owner { get; }
+
         private void OnSelectedIndexChanged(object sender, EventArgs e)
         {
             _selectedContent = _contents[SelectedIndex];
@@ -117,21 +115,24 @@ namespace SimpleNotepad.Controls
             }
 
             //クリックされた位置と各タブの位置を比較し、対象のタブを特定する
-            for (int i = 0; i < TabCount; i++)
+            for (var i = 0; i < TabCount; i++)
             {
                 var r = GetTabRect(i);
-                if (r.Contains(e.Location))
+                if (!r.Contains(e.Location))
                 {
-                    SelectedIndex = i;
-
-                    //現在サポートしているのは「閉じる」機能のみ
-                    var contextMenuStrip = new ContextMenuStrip();
-                    var item = new ToolStripMenuItem("閉じる");
-                    item.Click += OnClose;
-                    contextMenuStrip.Items.Add(item);
-                    contextMenuStrip.Show(this, e.Location);
-                    break;
+                    continue;
                 }
+
+                SelectedIndex = i;
+
+                //現在サポートしているのは「閉じる」機能のみ
+                var contextMenuStrip = new ContextMenuStrip();
+                var item = new ToolStripMenuItem("閉じる");
+                item.Click += OnClose;
+                contextMenuStrip.Items.Add(item);
+                contextMenuStrip.Show(this, e.Location);
+                break;
+
             }
         }
 
@@ -143,6 +144,5 @@ namespace SimpleNotepad.Controls
             }
             CloseContent();
         }
-
     }
 }

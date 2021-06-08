@@ -13,15 +13,15 @@ namespace SimpleNotepad.Controls
 
         int ContentsCount { get; }
 
-        string OpenFileName { get; }
+        int ContentAddedCount { get; }
 
         string OpenFilePath { get; set; }
 
-        bool IsEdited { get; set; }
-
-        int ContentAddedCount { get; }
+        string OpenFileName { get; }
 
         bool HasOpenFile { get; }
+
+        bool IsEdited { get; set; }
 
         void AddContent();
 

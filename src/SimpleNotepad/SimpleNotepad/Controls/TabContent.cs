@@ -14,65 +14,36 @@ namespace SimpleNotepad.Controls
         private readonly TextBox _txtMain;
         private readonly string _defaultFileName;
 
-        /// <summary>
-        /// タイトルを取得、設定します。
-        /// </summary>
         public string Title
         {
             get => Text;
             set => Text = value;
         }
 
-        /// <summary>
-        /// 本文を取得、設定します。
-        /// </summary>
         public string Content
         {
             get => _txtMain.Text;
             set => _txtMain.Text = value;
         }
 
-        /// <summary>
-        /// 編集中かどうかを取得、設定します。
-        /// 編集中の場合は true それ以外は false。
-        /// </summary>
+        public event EventHandler ContentChangedEventHandler
+        {
+            add => _txtMain.TextChanged += value;
+            remove => _txtMain.TextChanged -= value;
+        }
+
         public bool IsEdited { get; set; }
 
-        /// <summary>
-        /// 開いているファイルの名称を取得します。
-        /// </summary>
+        public string OpenFilePath { get; set; }
+
         public string OpenFileName => HasOpenFile
             ? Path.GetFileName(OpenFilePath)
             : _defaultFileName;
 
-        /// <summary>
-        /// 開いているファイルのパスを取得、設定します。
-        /// </summary>
-        public string OpenFilePath { get; set; }
-
-        /// <summary>
-        /// 開いているファイルがあるかを取得します。
-        /// 開いているファイルがあれば true それ以外は false
-        /// </summary>
         public bool HasOpenFile => !string.IsNullOrEmpty(OpenFilePath);
 
-        /// <summary>
-        /// 本文が変更された際に実行されるイベントハンドラーを取得します。
-        /// </summary>
-        public EventHandler ContentChangedEventHandler
-        {
-            set => _txtMain.TextChanged += value;
-        }
-
-        /// <summary>
-        /// 所属する<see cref="TabContentsControl"/>を取得します。
-        /// </summary>
         private TabContentsControl Owner { get; }
 
-        /// <summary>
-        /// <see cref="TabContent"/>の新しいインスタンスを生成します。
-        /// </summary>
-        /// <param name="owner">所属する<see cref="TabContentsControl"/></param>
         public TabContent(TabContentsControl owner)
         {
             Owner = owner ?? throw new ArgumentNullException(nameof(owner));
@@ -98,7 +69,6 @@ namespace SimpleNotepad.Controls
             };
 
             Controls.Add(_txtMain);
-
             Owner.Controls.Add(this);
         }
     }
