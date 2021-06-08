@@ -44,6 +44,36 @@ namespace SimpleNotepad.Presenters
             _notepad.CloseConfirm = ConfirmSave;
         }
 
+        private void OnLoad(object sender, EventArgs e)
+        {
+            var args = Environment.GetCommandLineArgs();
+
+            if (args.Length < 2 || string.IsNullOrEmpty(args[1]))
+            {
+                return;
+            }
+
+            for (var i = 1; i < args.Length; i++)
+            {
+                Open(args[i]);
+                if (args.Length - 1 == i)
+                {
+                    break;
+                }
+                _notepad.AddContent();
+            }
+        }
+
+        private void OnTextChanged(object sender, EventArgs e)
+        {
+            if (_notepad.IsEdited)
+            {
+                return;
+            }
+            _notepad.IsEdited = true;
+            _notepad.Title = Title;
+        }
+
         private void OnOpen(object sender, EventArgs e)
         {
             var filePath = _filePathProvider.GetOpenFilePath();
@@ -53,7 +83,86 @@ namespace SimpleNotepad.Presenters
                 return;
             }
 
+            if (_notepad.HasOpenFile)
+            {
+                _notepad.AddContent();
+            }
+
             Open(filePath);
+        }
+
+        /// <summary>
+        /// 現在開いているファイルを上書き保存します。
+        /// </summary>
+        private void OnSave(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void OnSaveAs(object sender, EventArgs e)
+        {
+            SaveAs();
+        }
+
+        private void Replace(object sender, EventArgs e)
+        {
+            var (dr, target, replaced, caseSensitive) = _displayDialogService.ShowReplaceDialog();
+
+            if (dr == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            _notepad.Content = Regex.Replace(_notepad.Content, target, replaced,
+                caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase);
+        }
+
+        private void OnDragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop)
+                ? DragDropEffects.All
+                : DragDropEffects.None;
+        }
+
+        private void OnDragDrop(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                return;
+            }
+
+            if (!(e.Data.GetData(DataFormats.FileDrop) is string[] filePaths) || !filePaths.Any())
+            {
+                return;
+            }
+
+            foreach (var t in filePaths)
+            {
+                if (string.IsNullOrEmpty(t))
+                {
+                    continue;
+                }
+
+                if (_notepad.HasOpenFile)
+                {
+                    _notepad.AddContent();
+                }
+
+                Open(t);
+            }
+        }
+
+        private void OnFormClosing(object sender, CancelEventArgs e)
+        {
+            for (var i = 0; i < _notepad.ContentsCount; i++)
+            {
+                e.Cancel = !_notepad.CloseConfirm();
+                if (e.Cancel)
+                {
+                    break;
+                }
+                _notepad.CloseContent();
+            }
         }
 
         private void Open(string filePath)
@@ -88,19 +197,6 @@ namespace SimpleNotepad.Presenters
             {
                 _displayDialogService.ShowError("メモリ不足です。");
             }
-        }
-
-        /// <summary>
-        /// 現在開いているファイルを上書き保存します。
-        /// </summary>
-        private void OnSave(object sender, EventArgs e)
-        {
-            Save();
-        }
-
-        private void OnSaveAs(object sender, EventArgs e)
-        {
-            SaveAs();
         }
 
         private bool Save()
@@ -181,29 +277,6 @@ namespace SimpleNotepad.Presenters
             return false;
         }
 
-        public void Replace(object sender, EventArgs e)
-        {
-            var (dr, target, replaced, caseSensitive) = _displayDialogService.ShowReplaceDialog();
-
-            if (dr == DialogResult.Cancel)
-            {
-                return;
-            }
-
-            _notepad.Content = Regex.Replace(_notepad.Content, target, replaced,
-                caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase);
-        }
-
-        public void OnTextChanged(object sender, EventArgs e)
-        {
-            if (_notepad.IsEdited)
-            {
-                return;
-            }
-            _notepad.IsEdited = true;
-            _notepad.Title = Title;
-        }
-
         private void FixContents(string contents)
         {
             _notepad.Content = contents;
@@ -216,16 +289,6 @@ namespace SimpleNotepad.Presenters
             _notepad.Title = Title;
         }
 
-        private void Write(string filePath)
-        {
-            if (string.IsNullOrEmpty(filePath))
-            {
-                throw new ArgumentException(@"ファイルパスを null 又は 空文字 にすることはできません。", nameof(filePath));
-            }
-
-            File.WriteAllText(filePath, _notepad.Content, _encoding);
-        }
-
         private string Read(string filePath)
         {
             if (string.IsNullOrEmpty(filePath))
@@ -234,6 +297,16 @@ namespace SimpleNotepad.Presenters
             }
 
             return File.ReadAllText(filePath, _encoding);
+        }
+
+        private void Write(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath))
+            {
+                throw new ArgumentException(@"ファイルパスを null 又は 空文字 にすることはできません。", nameof(filePath));
+            }
+
+            File.WriteAllText(filePath, _notepad.Content, _encoding);
         }
 
         private bool ConfirmSave()
@@ -251,70 +324,6 @@ namespace SimpleNotepad.Presenters
                     return Save();
                 default:
                     return dr == DialogResult.No;
-            }
-        }
-
-        private void OnLoad(object sender, EventArgs e)
-        {
-            var args = Environment.GetCommandLineArgs();
-
-            if (args.Length < 2 || string.IsNullOrEmpty(args[1]))
-            {
-                return;
-            }
-
-            for (var i = 1; i < args.Length; i++)
-            {
-                Open(args[i]);
-                if (args.Length - 1 == i)
-                {
-                    break;
-                }
-                _notepad.AddContent();
-            }
-        }
-
-
-        public void OnFormClosing(object sender, CancelEventArgs e)
-        {
-            for (var i = 0; i < _notepad.ContentsCount; i++)
-            {
-                e.Cancel = !_notepad.CloseConfirm();
-                if (e.Cancel)
-                {
-                    break;
-                }
-                _notepad.CloseContent();
-            }
-        }
-
-        private void OnDragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop)
-                ? DragDropEffects.All
-                : DragDropEffects.None;
-        }
-
-        private void OnDragDrop(object sender, DragEventArgs e)
-        {
-            if (!e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                return;
-            }
-
-            if (!(e.Data.GetData(DataFormats.FileDrop) is string[] filePaths) || !filePaths.Any())
-            {
-                return;
-            }
-
-            foreach (var t in filePaths)
-            {
-                if (string.IsNullOrEmpty(t))
-                {
-                    continue;
-                }
-                _notepad.AddContent();
-                Open(t);
             }
         }
     }
