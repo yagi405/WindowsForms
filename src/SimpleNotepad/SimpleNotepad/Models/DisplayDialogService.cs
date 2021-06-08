@@ -5,7 +5,6 @@ using SimpleNotepad.Views;
 
 namespace SimpleNotepad.Models
 {
-    /// <inheritdoc cref="IDisplayDialogService"/>
     public class DisplayDialogService : IDisplayDialogService
     {
         public void ShowError(string text)
